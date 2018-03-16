@@ -15,8 +15,7 @@ export class WorkoutTxListService {
   }
 
   getWorkoutTxList(workoutId: number): Observable<any>{
-    console.log("Url: "+this.getWorkoutListTxUrl+"/"+workoutId);
-    return this.http.get<any>(this.getWorkoutListTxUrl+"/"+workoutId);
+      return this.http.get<any>(this.getWorkoutListTxUrl+"/"+workoutId);
   }
 
 }

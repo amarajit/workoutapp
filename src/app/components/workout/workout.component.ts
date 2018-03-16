@@ -3,21 +3,28 @@ import { Router } from '@angular/router';
 
 import { WorkoutService } from '../../services/workout.service';
 import { MessageService } from '../../services/message.service';
+import { UserdataService } from '../../services/userdata.service';
+import { WorkoutdataService } from '../../services/workoutdata.service';
 import { Workout } from '../../model/Workout';
 import { User } from '../../model/User';
+
 @Component({
   selector: 'app-workout',
   templateUrl: './workout.component.html',
-  styleUrls: ['./workout.component.css']
+  styleUrls: ['./workout.component.css'],
+  providers: [WorkoutService]
 })
 export class WorkoutComponent implements OnInit {
-  user: User = { userName: "", password: "" };
-  workout: Workout = { id: null, title: "", calBurntPerUnitTime: 0, unitTime: "", user: this.user };
+  
+  user: any = {};
+  workout: any = {};
 
   constructor(
     private router: Router,
     private workoutService: WorkoutService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private userdataService: UserdataService,
+    private workoutdataService: WorkoutdataService
   ) { }
 
   redirect() {
@@ -26,11 +33,11 @@ export class WorkoutComponent implements OnInit {
 
   ngOnInit() {
   }
-  
+
   createWorkout() {
-    console.log("userName-------------->" + this.user.userName);
-    console.log("calBurnt-------------->" + this.workout.calBurntPerUnitTime);
-    this.workout.user = this.user;
+    this.workout.user = this.userdataService;
+    this.workoutdataService.calBurntPerUnitTime=this.workout.calBurntPerUnitTime;
+    this.workoutdataService.unitTime=this.workout.unitTime;
     this.workoutService.createWorkout(this.workout)
       .subscribe(
       data => {

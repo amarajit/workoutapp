@@ -7,7 +7,8 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.css'],
+  providers: [RegisterService]
 })
 export class RegisterComponent implements OnInit {
 
@@ -18,7 +19,6 @@ export class RegisterComponent implements OnInit {
     private router: Router,
     private registerService: RegisterService,
     private messageService: MessageService
-    
   ) { }
 
   ngOnInit() {
@@ -27,14 +27,14 @@ export class RegisterComponent implements OnInit {
   register() {
     this.loading = true;
     this.registerService.register(this.user)
-        .subscribe(
-            data => {
-                this.messageService.success('Registration successful', true);
-                this.router.navigate(['/login']);
-            },
-            error => {
-                this.messageService.error(error.error.message);
-                this.loading = false;
-            });
+      .subscribe(
+      data => {
+        this.messageService.success('Registration successful', true);
+        this.router.navigate(['/login']);
+      },
+      error => {
+        this.messageService.error(error.error.message);
+        this.loading = false;
+      });
   }
 }

@@ -15,10 +15,13 @@ import { MessageService } from './services/message.service';
 import { RegisterService } from './services/register.service';
 import { WorkoutService } from './services/workout.service';
 import { WorkoutListService } from './services/workoutList.service';
+import { WorkoutdataService } from './services/workoutdata.service';
+import { UserdataService } from './services/userdata.service';
 import { ServiceUrlProviderService } from './services/service-url-provider.service';
 import { WorkoutListComponent } from './components/workoutList/workoutList.component';
 import { WorkoutTxListComponent } from './components/workoutTxList/workoutTxList.component';
 import { WorkoutTxComponent } from './components/workoutTx/workoutTx.component';
+import { DlDateTimePickerDateModule } from 'angular-bootstrap-datetimepicker';
 
 @NgModule({
   declarations: [
@@ -35,14 +38,13 @@ import { WorkoutTxComponent } from './components/workoutTx/workoutTx.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    DlDateTimePickerDateModule
   ],
   providers: [
-    UserService, 
     MessageService, 
-    RegisterService, 
-    WorkoutService, 
-    WorkoutListService,
+    WorkoutdataService,
+    UserdataService,
     ServiceUrlProviderService
   ],
   bootstrap: [AppComponent]

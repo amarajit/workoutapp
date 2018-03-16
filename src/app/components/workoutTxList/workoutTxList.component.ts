@@ -3,6 +3,7 @@ import { WorkoutTxService } from '../../services/workoutTx.service';
 import { WorkoutTxListService } from '../../services/workoutTxList.service';
 import { Router } from '@angular/router';
 import { MessageService } from '../../services/message.service';
+import { WorkoutdataService } from '../../services/workoutdata.service';
 import { Input } from '@angular/core';
 import { User } from '../../model/user';
 import { Workout } from '../../model/workout';
@@ -11,17 +12,18 @@ import { Workout } from '../../model/workout';
     selector: 'app-workoutTxList',
     templateUrl: './workoutTxList.component.html',
     styleUrls: ['./workoutTxList.component.css'],
-    providers: [WorkoutTxService, WorkoutTxListService]
+    providers: [ WorkoutTxService, WorkoutTxListService ]
 })
 export class WorkoutTxListComponent implements OnInit {
-    workout: Workout = {"id":1, "title":"", "calBurntPerUnitTime":0, "unitTime":"", "user": null};
+
     workoutTxnList: any = [];
 
     constructor(private router: Router,
         private workoutTxService: WorkoutTxService,
         private workoutTxListService: WorkoutTxListService,
-        private messageService: MessageService) {
-        this.workoutTxListService.getWorkoutTxList(this.workout.id);
+        private messageService: MessageService,
+        private workoutdataService: WorkoutdataService) {
+        this.workoutTxListService.getWorkoutTxList(this.workoutdataService.getWorkoutId());
     }
 
     redirect() {
@@ -29,16 +31,17 @@ export class WorkoutTxListComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.workoutTxListService.getWorkoutTxList(this.workout.id)
+        this.workoutTxListService.getWorkoutTxList(this.workoutdataService.getWorkoutId())
             .subscribe(
             data => {
                 this.workoutTxnList = data;
-                console.log("Response: " + this.workoutTxnList);
             },
             error => {
                 this.messageService.error(error.error.message);
             });
     }
 
-
+    redirectBack(){
+        this.router.navigate(['./workoutList']);
+    }
 }

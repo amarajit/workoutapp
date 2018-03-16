@@ -7,28 +7,29 @@
             <h2>Add Workout Transaction</h2>
         </div>
         <div class="panel-body">
-        <form name="form" (ngSubmit)="f.form.valid && createWorkoutTxn()" #f="ngForm" novalidate>
-            <div class="form-group">
-                <label for="startTime">Start Time</label>
-                <input class="form-control" type="datetime-local" [value]="startTime" (change)="date=$event.target.value" [(ngModel)]="workoutTxn.startTime"
-                    [ngModelOptions]="{standalone: true}" />
-            </div>
-            <div class="form-group">
-                <label for="endTime">End Time </label>
-                <input class="form-control" type="datetime-local" [value]="endTime" (change)="date=$event.target.value" [(ngModel)]="workoutTxn.endTime"
-                    [ngModelOptions]="{standalone: true}" />
-            </div>
-            <div class="form-group">
-                <label for="duration">Duration</label>
-                <input type="text" class="form-control" name="duration" [(ngModel)]="workoutTxn.duration" #duration="ngModel" required />
-            </div>
-            <div class="form-group">
-                <label for="calBurnt">Amount Of Calories Burnt</label>
-                <input type="text" class="form-control" name="calBurnt" [(ngModel)]="workoutTxn.calBurnt" #duration="ngModel" required />
-            </div>
-            <div class="form-actions">
-                <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-info btn-md btn-lg">Submit</button>
-                <button class="btn btn-info btn-lg" (click)="redirect()">Cancel</button>
-            </div>
-        </form>
-    </div>
+            <form name="form" (ngSubmit)="f.form.valid && createWorkoutTxn()" #f="ngForm" novalidate>
+                <div class="form-group">
+                    <h5>
+                        <label for="startTime">Start Time</label>
+                    </h5>
+                    <dl-date-time-picker ng-model="myDate" datetime-model="yyyy-MM-ddTHH:mm:ss" [(ngModel)]="workoutTxn.startTime" [ngModelOptions]="{standalone: true}"></dl-date-time-picker>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" [(ngModel)]="workoutTxn.startTime" [ngModelOptions]="{standalone: true}">
+                </div>
+                <div class="form-group">
+                    <h5>
+                        <label for="stopTime">End Time </label>
+                    </h5>
+                    <dl-date-time-picker ng-model="myDate" datetime-model="yyyy-MM-ddTHH:mm:ss" [(ngModel)]="workoutTxn.stopTime" [ngModelOptions]="{standalone: true}"></dl-date-time-picker>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" [(ngModel)]="workoutTxn.stopTime" [ngModelOptions]="{standalone: true}">
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-info btn-md btn-lg">Submit</button>
+                    <button class="btn btn-info btn-lg" (click)="redirect()">Cancel</button>
+                </div>
+            </form>
+        </div>

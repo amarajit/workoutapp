@@ -15,8 +15,8 @@ export class WorkoutListService {
     this.getWorkoutListUrl = urlProv.getCompleteServiceUrl("workouts/user/");
   }
 
-  getWorkoutList(userName: string): Observable<any> {
-    return this.http.get<any>(this.getWorkoutListUrl + userName);
+  getWorkoutList(userId: number): Observable<any> {
+    return this.http.get<any>(this.getWorkoutListUrl + userId);
   }
 
 }
