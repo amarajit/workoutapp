@@ -1,30 +1,46 @@
- 
-     <a href="#!/login" class="btn btn-link">Logout</a>
-     <div class="col-md-6 col-md-offset-3">
-
-        <div class="container">
-  <h2>Workout List</h2>
-  <div class="table-responsive">     
-  <table  class="table table-hover">
-    <thead>
-      <tr>
-        <th>Title</th>
-        <th>Calories Burnt Per Unit Time</th>
-        <th>Unit Time</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let workout of workoutList; let i = index" (click)="redirectToWorkTx()" [class.active]="i == selectedRow">
-        <td>{{workout.title}}</td>
-        <td>{{workout.calBurntPerUnitTime}}</td>
-        <td>{{workout.unitTime}}</td>
-
-      </tr>
-    </tbody>
-  </table>
+<a href="#!/login" class="btn btn-link btn-lg">
+  <h3>Logout</h3>
+</a>
+<div class="container">
+  <div class="jumbotron">
+    <h3 style="text-align:center" class="text-primary">WorkOut Portal</h3>
   </div>
-  <div class="form-actions">
-    <button class="btn btn-link " (click)="redirect()">Add</button>
-   </div>
-</div>
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h2>Workout List</h2>
     </div>
+    <div class="container">
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th style="text-align:center">
+                <h5>Workout Id</h5>
+              </th>
+              <th style="text-align:center">
+                <h5>Title</h5>
+              </th>
+              <th style="text-align:center">
+                <h5>Calories Burnt Per Unit Time</h5>
+              </th>
+              <th style="text-align:center">
+                <h5>Unit Time</h5>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let workout of workoutList; let i = index" (click)="redirectToWorkTx(i)" [class.active]="i == selectedRow">
+              <td style="text-align:center">{{workout.id}}</td>
+              <td style="text-align:center">{{workout.title}}</td>
+              <td style="text-align:center">{{workout.calBurntPerUnitTime}}</td>
+              <td style="text-align:center">{{workout.unitTime}}</td>
+
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="form-actions">
+        <button class="btn btn-info btn-lg" (click)="redirect()">Add</button>
+      </div>
+    </div>
+  </div>

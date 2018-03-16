@@ -11,11 +11,12 @@ export class WorkoutTxListService {
     private http: HttpClient,
     private urlProv: ServiceUrlProviderService
   ) { 
-      this.getWorkoutListTxUrl = urlProv.getCompleteServiceUrl("workoutTxn");
+      this.getWorkoutListTxUrl = urlProv.getCompleteServiceUrl("workouttxs");
   }
 
-  getWorkoutTxList(user: any): Observable<any>{
-    return this.http.get<any>(this.getWorkoutListTxUrl+"/"+2);
+  getWorkoutTxList(workoutId: number): Observable<any>{
+    console.log("Url: "+this.getWorkoutListTxUrl+"/"+workoutId);
+    return this.http.get<any>(this.getWorkoutListTxUrl+"/"+workoutId);
   }
 
 }

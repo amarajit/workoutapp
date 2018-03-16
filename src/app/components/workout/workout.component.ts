@@ -12,7 +12,7 @@ import { User } from '../../model/User';
 })
 export class WorkoutComponent implements OnInit {
   user: User = { userName: "", password: "" };
-  workout: Workout = { title: "", calBurntPerUnitTime: 0, unitTime: "", user: this.user };
+  workout: Workout = { id: null, title: "", calBurntPerUnitTime: 0, unitTime: "", user: this.user };
 
   constructor(
     private router: Router,
